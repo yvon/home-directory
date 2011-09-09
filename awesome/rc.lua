@@ -154,6 +154,20 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+    -- unminimize windows
+    awful.key({ modkey, "Shift"   }, "n",
+        function ()
+            local allclients = client.get(mouse.screen)
+
+            for _,c in ipairs(allclients) do
+                if c.minimized and c:tags()[mouse.screen] == awful.tag.selected(mouse.screen) then
+                    c.minimized = false
+                    client.focus = c
+                    c:raise()
+                    return
+                end
+            end
+        end),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
