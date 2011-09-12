@@ -1,0 +1,14 @@
+[color]
+  ui = auto
+[alias]
+  ci = commit
+  st = status
+  wc = whatchanged
+  co = checkout
+  cp = cherry-pick
+  graph = log --graph --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+[user]
+  name = Yvon Cognard
+  email = yvon.cognard@quelleenergie.fr
+[core]
+  pager = "pager.sh"
