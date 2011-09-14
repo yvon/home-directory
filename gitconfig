@@ -12,3 +12,5 @@
   email = yvon.cognard@quelleenergie.fr
 [core]
   pager = "pager.sh"
+[push]
+	default = tracking
