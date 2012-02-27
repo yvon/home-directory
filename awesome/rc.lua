@@ -9,15 +9,12 @@ require("naughty")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init("/home/yvon/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "rxvt-unicode"
 editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
-
-awful.util.spawn("nitrogen --restore")
-awful.util.spawn("nm-applet")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -29,18 +26,18 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
+--  awful.layout.suit.fair,
+--  awful.layout.suit.fair.horizontal,
+--  awful.layout.suit.spiral,
+--  awful.layout.suit.spiral.dwindle,
+--  awful.layout.suit.max,
+--  awful.layout.suit.max.fullscreen,
+    awful.layout.suit.magnifier,
+    awful.layout.suit.floating
 }
 -- }}}
 
@@ -55,18 +52,17 @@ end
 
 -- {{{ Menu
 
-mymainmenu = awful.menu({ items = { { "open terminal", terminal } } })
+mymainmenu = awful.menu({ items = { { "open terminal", terminal },
+                                    { "mixer", "rxvt-unicode -e alsamixer" },
+                                    { "firefox", "firefox" },
+                                    { "restart", awesome.restart},
+                                    { "quit", awesome.quit } } })
 
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
-                                     menu = mymainmenu })
 -- }}}
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" })
-
--- Create a systray
-mysystray = widget({ type = "systray" })
+-- mytextclock = awful.widget.textclock({ align = "right" })
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -131,14 +127,12 @@ for s = 1, screen.count() do
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
-            mylauncher,
             mytaglist[s],
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
-        mytextclock,
-        s == 1 and mysystray or nil,
+        mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }
 end
@@ -168,10 +162,6 @@ globalkeys = awful.util.table.join(
                 end
             end
         end),
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
-
     awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx( 1)
@@ -198,8 +188,22 @@ globalkeys = awful.util.table.join(
             end
         end),
 
+    -- Lock
+    awful.key({ modkey, "Shift"   }, "s", function () awful.util.spawn('slock') end),
+
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey, "Shift"   }, "Return", function() awful.util.spawn('gvim') end),
+    awful.key({ modkey,           }, "Return",
+      function ()
+        if not pcall(function ()
+          pid = client.focus.pid
+          cpid = string.gsub(awful.util.pread('pgrep -P ' .. pid), "[\r\n]+$", "")
+          cwd = string.gsub(awful.util.pread('readlink /proc/' .. cpid .. '/cwd'), "[\r\n]+$", "")
+          awful.util.spawn(terminal .. ' -cd ' .. cwd)
+        end) then
+          awful.util.spawn(terminal)
+        end
+      end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -296,16 +300,15 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = true,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                     buttons = clientbuttoamns } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
+--    { rule = { class = "Firefox" },
+--      properties = { border_width = "0" } },
 }
 -- }}}
 
@@ -326,7 +329,7 @@ client.add_signal("manage", function (c, startup)
     if not startup then
         -- Set the windows at the slave,
         -- i.e. put it at the end of others instead of setting it master.
-        -- awful.client.setslave(c)
+        awful.client.setslave(c)
 
         -- Put windows in a smart way, only if they does not set an initial position.
         if not c.size_hints.user_position and not c.size_hints.program_position then
