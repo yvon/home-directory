@@ -7,10 +7,14 @@
   co = checkout
   cp = cherry-pick
   graph = log --graph --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+  wd = diff --color --word-diff=color
 [user]
   name = Yvon Cognard
   email = yvon.cognard@quelleenergie.fr
 [core]
   pager = "pager.sh"
+  whitespace = tab-in-indent,space-before-tab,trailing-space
 [push]
-	default = tracking
+  default = tracking
+[merge]
+  tool = meld

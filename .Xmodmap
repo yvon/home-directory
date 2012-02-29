@@ -8,6 +8,5 @@ keycode 45  = k K Up
 keycode 46  = l L Right
 ! Escape
 keycode 49  = Escape asciitilde grave asciitilde dead_grave dead_tilde dead_grave dead_tilde
-keycode 9   =
 ! Enter
 keycode 65  = space space Return
