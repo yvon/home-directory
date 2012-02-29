@@ -1,0 +1,21 @@
+set use_envelope_from=yes
+set use_from=yes
+set alias_file= ~/.mutt/aliases
+set sort_alias= alias
+set reverse_alias=yes
+set sort_aux=last-date-received
+set sort=threads
+set delete=yes
+set confirmappend=no
+set include=yes
+save-hook .* +ref
+source $alias_file
+
+macro index s "<save-message>+ref<enter>"
+bind  index S save-message
+macro pager s "<save-message>+ref<enter>"
+macro index c "<change-folder>?"
+
+color index     red   default "~F"
+color status    white color88
+color indicator black color15

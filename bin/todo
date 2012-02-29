@@ -1,0 +1,4 @@
+#!/bin/sh
+
+read task
+echo | mutt -s "[TODO] $task" yvon@cognard.com

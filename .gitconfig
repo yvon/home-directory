@@ -10,7 +10,7 @@
   wd = diff --color --word-diff=color
 [user]
   name = Yvon Cognard
-  email = yvon.cognard@quelleenergie.fr
+  email = yvon@cognard.com
 [core]
   pager = "pager.sh"
   whitespace = tab-in-indent,space-before-tab,trailing-space
