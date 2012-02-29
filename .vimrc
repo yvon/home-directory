@@ -22,10 +22,10 @@ set showmatch
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
-nnoremap <up> :w<cr>:b#<cr>
-nnoremap <down> :ls<cr>:b
-nnoremap <left> :w<cr>:bp<cr>
-nnoremap <right> :w<cr>:bn<cr>
+nnoremap <leader>h :w<cr>:b#<cr>
+nnoremap <leader>j :w<cr>:bp<cr>
+nnoremap <leader>k :w<cr>:bn<cr>
+nnoremap <leader>k :w<cr>:b<cr>
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -46,20 +46,9 @@ autocmd Filetype treetop setlocal ts=2 sw=2 expandtab
 "https://github.com/tpope/vim-pathogen
 call pathogen#infect()
 
-map <F5> :tabp<CR>
-map <Leader>k :tabp<CR>
-map <F6> :tabn<CR>
-map <Leader>j :tabn<CR>
-map <F7> :tabc<CR>
-map <F8> :tabo<CR>
-
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <C-j> <C-w>w
 nnoremap <C-k> <C-w>W
-nnoremap <Esc>h <C-w><
-nnoremap <Esc>l <C-w>>
-nnoremap <Esc>j <C-w>+
-nnoremap <Esc>k <C-w>-
 
 " Vim functions to run RSpec and Cucumber on the current file and optionally on
 " the spec/scenario under the cursor.
