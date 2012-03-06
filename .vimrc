@@ -8,8 +8,8 @@ set mouse=a
 set nocompatible
 set ruler
 set relativenumber
-set nowrap
-set tabstop=4
+set ts=4
+set sw=4
 set wildmode=list:longest
 set list listchars=tab:»·,trail:·
 set pastetoggle=<F2>
