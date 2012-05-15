@@ -4,6 +4,7 @@ let mapleader = ' '
 syntax on
 filetype plugin indent on
 
+set colorcolumn=80
 set mouse=a
 set nocompatible
 set ruler
@@ -11,7 +12,7 @@ set relativenumber
 set ts=4
 set sw=4
 set wildmode=list:longest
-set list listchars=tab:»·,trail:·
+set list listchars=tab:»\ ,trail:·
 set pastetoggle=<F2>
 set t_Co=256 "256 colors
 "set showtabline=2 "allways display tab bar
@@ -26,10 +27,6 @@ nnoremap <leader>h :w<cr>:b#<cr>
 nnoremap <leader>j :w<cr>:bp<cr>
 nnoremap <leader>k :w<cr>:bn<cr>
 nnoremap <leader>k :w<cr>:b<cr>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 nnoremap Q @q
