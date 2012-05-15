@@ -14,8 +14,9 @@ source $alias_file
 macro index s "<save-message>+ref<enter>"
 bind  index S save-message
 macro pager s "<save-message>+ref<enter>"
-macro index c "<change-folder>?"
 
-color index     red   default "~F"
+color index     color190   default "~F"
+color index     default color52 "~N"
+color index     default color235 "~O"
 color status    white color88
 color indicator black color15
