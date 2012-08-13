@@ -4,18 +4,21 @@ let mapleader = ' '
 syntax on
 filetype plugin indent on
 
-set colorcolumn=80
+map <F2> :NERDTreeToggle<CR>
+set textwidth=80
+set colorcolumn=+0
+set showbreak=++\
 set mouse=a
 set nocompatible
 set ruler
 set relativenumber
-set ts=4
-set sw=4
+set ts=2
+set sw=2
+set expandtab
 set wildmode=list:longest
 set list listchars=tab:»\ ,trail:·
 set pastetoggle=<F2>
 set t_Co=256 "256 colors
-"set showtabline=2 "allways display tab bar
 set ignorecase
 set smartcase
 set gdefault
@@ -27,18 +30,19 @@ nnoremap <leader>h :w<cr>:b#<cr>
 nnoremap <leader>j :w<cr>:bp<cr>
 nnoremap <leader>k :w<cr>:bn<cr>
 nnoremap <leader>k :w<cr>:b<cr>
-nnoremap j gj
-nnoremap k gk
 nnoremap Q @q
 
 colorscheme leo
 
-autocmd Filetype eruby setlocal ts=2 sw=2 expandtab
-autocmd Filetype haml setlocal ts=2 sw=2 expandtab
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
-autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
-autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
-autocmd Filetype treetop setlocal ts=2 sw=2 expandtab
+"autocmd Filetype eruby setlocal ts=2 sw=2 expandtab
+"autocmd Filetype haml setlocal ts=2 sw=2 expandtab
+"autocmd Filetype html setlocal ts=2 sw=2 expandtab
+"autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+"autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
+"autocmd Filetype treetop setlocal ts=2 sw=2 expandtab
+
+au BufRead,BufNewFile Gemfile setfiletype ruby
+au BufRead,BufNewFile Guardfile setfiletype ruby
 
 "https://github.com/tpope/vim-pathogen
 call pathogen#infect()
