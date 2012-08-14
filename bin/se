@@ -1,5 +1,0 @@
-#!/bin/sh
-
-stty -echo
-cat
-stty echo

@@ -1,0 +1,13 @@
+URxvt*transparent: false
+URxvt*saveLines: 12000
+URxvt*foreground: #eeeeee
+URxvt*background: #000000
+URxvt*font: xft:Terminus:bold:pixelsize=16
+URxvt*termName: xterm
+URxvt*scrollBar: false
+URxvt*scrollstyle: rxvt
+
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: chromium
+URxvt.matcher.button: 2
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]

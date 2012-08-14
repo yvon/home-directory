@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ $# -ne 1 ]
+then
+	echo "Usage: `basename` $0 <size>"
+	exit 1
+fi
+
+printf '\33]50;%s\007' "xft:Terminus:bold:pixelsize=$1"
+exit 0
