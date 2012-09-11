@@ -93,7 +93,8 @@ endif
 " ### Normal should come first
 
 " console-gui different
-hi Normal				cterm=none		ctermfg=255		ctermbg=232 guifg=#ffffff	guibg=#121212
+" hi Normal				cterm=none		ctermfg=255		ctermbg=232 guifg=#ffffff	guibg=#121212
+hi Normal				cterm=none		ctermfg=255		ctermbg=232 guifg=#ffffff	guibg=#000000
 hi CursorLine		cterm=none		ctermbg=16		guibg=#050505
 hi SpecialKey		cterm=none		ctermfg=245		ctermbg=233		guifg=#8a8a8a	guibg=#090909
 hi Folded				cterm=none		ctermfg=110		ctermbg=233		guifg=#87afd7	guibg=#000000
@@ -117,7 +118,7 @@ hi NonText			cterm=none		ctermfg=21
 hi Question			cterm=none		ctermfg=40
 hi Search				cterm=none		ctermfg=16		ctermbg=248		guifg=#000000	guibg=#a8a8a8
 hi SignColumn		cterm=none		ctermbg=16		guibg=#000000
-hi StatusLine		cterm=bold		ctermfg=255		ctermbg=19		guifg=#0000af	guibg=#ffffff
+hi StatusLine		cterm=bold		ctermfg=232		ctermbg=255		guifg=#0000af	guibg=#ffffff
 hi StatusLineNC	cterm=none		ctermfg=252		ctermbg=17		guifg=#00005f guibg=#d0d0d0
 hi Title				cterm=none		ctermfg=33
 hi VertSplit		cterm=none		ctermfg=254		ctermbg=16		guifg=#000000 guibg=#eeeeee
@@ -151,21 +152,20 @@ if v:version >= 700
 	"hi TabLine			cterm=none	ctermfg=252		ctermbg=17
 	"hi TabLineSel		cterm=none	ctermfg=255		ctermbg=21
 	"hi TabLineFill	cterm=none	ctermfg=17		ctermbg=17
-	hi TabLine			cterm=none	ctermfg=233		ctermbg=110
+	hi TabLine			cterm=none	ctermfg=233		ctermbg=110 gui=none guifg=#aaaaaa guibg=#222222
 	hi TabLineSel		cterm=none	ctermfg=110		ctermbg=233
-	hi TabLineFill	cterm=none	ctermfg=233		ctermbg=110
-
+	hi TabLineFill	cterm=none	ctermfg=233		ctermbg=110 gui=none guifg=#aaaaaa guibg=#222222
 endif
 
 if v:version >= 703
-	hi ColorColumn	cterm=none	ctermfg=250		ctermbg=234
+	hi ColorColumn	cterm=none	ctermfg=250		ctermbg=234 guibg=#070707
 endif
 
 " ### syntax highlighting
 
 hi Boolean			cterm=none		ctermfg=215		guifg=#ffaf5f
 hi Character		cterm=none		ctermfg=184		guifg=#d7d700
-hi Comment			cterm=none		ctermfg=248		gui=italic		guifg=#a8a8a8
+hi Comment			cterm=none		ctermfg=248		gui=none		guifg=#a8a8a8
 hi Conditional	cterm=none		ctermfg=33		guifg=#0087ff
 hi Constant			cterm=none		ctermfg=226		guifg=#ffff00
 hi Define				cterm=bold		ctermfg=27		gui=bold			guifg=#005fff
@@ -182,7 +182,8 @@ hi Special			cterm=none		ctermfg=206		ctermbg=234		guifg=#ff5fd7 guibg=#1c1c1c
 hi Statement		cterm=none		ctermfg=171		gui=none			guifg=#d75fff
 "hi String				cterm=none		ctermfg=224		ctermbg=234		guifg=#ffd7d7	guibg=#1c1c1c
 hi String				cterm=none		ctermfg=180		ctermbg=234		guifg=#d7af87	guibg=#1c1c1c
-hi Todo					cterm=none		ctermfg=16		ctermbg=226		guifg=#000000 guibg=#ffff00
+" hi Todo					cterm=none		ctermfg=16		ctermbg=226		guifg=#000000 guibg=#ffff00
+hi Todo			cterm=none		ctermfg=248		ctermbg=232 gui=none		guifg=#a8a8a8 guibg=#000000
 hi Type					cterm=none		ctermfg=75		gui=none			guifg=#5fafff
 hi Underlined		cterm=underline	ctermfg=39	gui=underline	guifg=#00afff
 
