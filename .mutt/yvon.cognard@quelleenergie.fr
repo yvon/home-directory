@@ -1,5 +1,0 @@
-set from=yvon.cognard@quelleenergie.fr
-set folder=~/$from
-set record="=Sent"
-set postponed="=Drafts"
-set spoolfile = "+INBOX"

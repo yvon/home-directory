@@ -1,12 +1,13 @@
-nnoremap ; :
+call pathogen#infect()
+
 let mapleader = ' '
 
-syntax on
+syntax enable
 filetype plugin indent on
 
-map <F2> :NERDTreeToggle<CR>
+set tags+=gems.tags
 set textwidth=80
-set colorcolumn=+0
+let &colorcolumn=join(range(&textwidth + 1, &textwidth + 30),",")
 set showbreak=++\
 set mouse=a
 set nocompatible
@@ -23,33 +24,30 @@ set ignorecase
 set smartcase
 set gdefault
 set showmatch
-nnoremap <leader><space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
-nnoremap <leader>h :w<cr>:b#<cr>
-nnoremap <leader>j :w<cr>:bp<cr>
-nnoremap <leader>k :w<cr>:bn<cr>
-nnoremap <leader>k :w<cr>:b<cr>
+set laststatus=2
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+set guioptions=""
+set guifont=Terminus\ 12
+
+" nnoremap ; :
 nnoremap Q @q
+nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <F2> :NERDTreeToggle<CR>
+nnoremap <F3> :cn<CR>
+nnoremap <F4> :cp<CR>
+nnoremap <C-j> <C-W>w
+nnoremap <C-k> <C-w>W
 
 colorscheme leo
+highlight ColorColumn guibg=#060606
 
-"autocmd Filetype eruby setlocal ts=2 sw=2 expandtab
-"autocmd Filetype haml setlocal ts=2 sw=2 expandtab
-"autocmd Filetype html setlocal ts=2 sw=2 expandtab
-"autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
-"autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
-"autocmd Filetype treetop setlocal ts=2 sw=2 expandtab
+autocmd QuickFixCmdPost *grep* cwindow
+autocmd FileType mail set tw=72
+autocmd FileType txt set tw=72
 
 au BufRead,BufNewFile Gemfile setfiletype ruby
 au BufRead,BufNewFile Guardfile setfiletype ruby
-
-"https://github.com/tpope/vim-pathogen
-call pathogen#infect()
-
-nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <C-j> <C-w>w
-nnoremap <C-k> <C-w>W
 
 " Vim functions to run RSpec and Cucumber on the current file and optionally on
 " the spec/scenario under the cursor.

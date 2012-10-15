@@ -1,7 +1,0 @@
-#!/bin/sh
-
-offlineimap=/usr/bin/offlineimap
-xdotool key Super+8
-urxvt -e bash -c "$offlineimap -a 'yvon.cognard@quelleenergie.fr'; bash" &
-urxvt -e bash -c "$offlineimap -a 'yvon@cognard.com'; bash" &
-urxvt -e bash -c "$offlineimap -a 'ycognard@tbcast.com'; bash" &

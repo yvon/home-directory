@@ -1,15 +1,11 @@
-macro index <F2> <change-folder>~/yvon@cognard.com/INBOX<enter>
-macro index <F3> <change-folder>~/yvon.cognard@quelleenergie.fr/INBOX<enter>
-macro index <F4> <change-folder>~/ycognard@tbcast.com/INBOX<enter>
-folder-hook 'yvon@cognard.com' 'source ~/.mutt/yvon@cognard.com'
-folder-hook 'yvon.cognard@quelleenergie.fr' 'source ~/.mutt/yvon.cognard@quelleenergie.fr'
-folder-hook 'ycognard@tbcast.com' 'source ~/.mutt/ycognard@tbcast.com'
-
-source ~/.mutt/yvon@cognard.com
+unset imap_passive
 
 set alias_file= ~/.mutt/aliases
-source $alias_file
-
+set mime_forward=yes
+set mime_forward_rest=yes
+set imap_keepalive=300
+set timeout=10
+set mail_check=10
 set use_from=yes
 set use_envelope_from=yes
 set realname='Yvon Cognard'
@@ -25,11 +21,13 @@ set delete=yes
 set confirmappend=no
 set include=yes
 set markers=no
+set index_format="%Z %{%d/%m/%y} %-15.15L %s"
+
+source $alias_file
+source ~/.my_mutt
 
 color index     color190 default "~F"
 color index     color160 default "~N"
 color index     color160 default "~O"
 color status    white color88
 color indicator black color15
-
-macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
