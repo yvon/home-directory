@@ -1,0 +1,5 @@
+#!/bin/sh
+
+TMP_FILE=mktemp
+cp $2 $TMP_FILE
+$1 $TMP_FILE &
