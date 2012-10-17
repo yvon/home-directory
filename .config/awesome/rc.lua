@@ -81,13 +81,6 @@ mymainmenu = awful.menu({ items = { { "chromium", "chromium" },
                                   }
                         })
 
--- {{{ Wibox
--- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" })
-
--- Create a systray
-mysystray = widget({ type = "systray" })
-
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
@@ -114,7 +107,6 @@ for s = 1, screen.count() do
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
-        s == 1 and mysystray or nil,
         layout = awful.widget.layout.horizontal.rightleft
     }
 end
