@@ -33,7 +33,12 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
 export PATH=/home/tbcast/.rbenv/shims:/home/tbcast/bin:/home/tbcast/.rbenv/bin:/home/tbcast/.rbenv/shims:/home/tbcast/bin:/home/tbcast/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl
+export EDITOR=vim
+
+unsetopt correct_all
 
 alias keyboard_setup='setxkbmap us -variant altgr-intl; xmodmap ~/.Xmodmap'
+alias e=$EDITOR
+
+eval `ssh-agent`
