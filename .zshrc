@@ -32,10 +32,10 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-export PATH=$HOME/.rbenv/shims:$HOME/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$HOME/bin:$PATH
-export EDITOR=vim
-
 unsetopt correct_all
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+export EDITOR=vim
 alias e=$EDITOR
