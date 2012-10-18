@@ -17,7 +17,8 @@ set ts=2
 set sw=2
 set expandtab
 set wildmode=list:longest
-set list listchars=tab:»\ ,trail:·
+set list
+set listchars="tab:»\ ,trail:·"
 set pastetoggle=<F2>
 set t_Co=256 "256 colors
 set ignorecase
