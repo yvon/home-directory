@@ -15,9 +15,6 @@
   whitespace = tab-in-indent,space-before-tab,trailing-space
 [push]
   default = tracking
-[pull]
-  rebase = true
-[merge]
   tool = meld
 [sendemail]
   from = Yvon cognard <yvon@cognard.com>
