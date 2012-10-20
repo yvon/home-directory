@@ -94,7 +94,7 @@ endif
 
 " console-gui different
 " hi Normal				cterm=none		ctermfg=255		ctermbg=232 guifg=#ffffff	guibg=#121212
-hi Normal				cterm=none		ctermfg=255		ctermbg=232 guifg=#ffffff	guibg=#000000
+hi Normal				cterm=none		ctermfg=255		ctermbg=16 guifg=#ffffff	guibg=#000000
 hi CursorLine		cterm=none		ctermbg=16		guibg=#050505
 hi SpecialKey		cterm=none		ctermfg=245		ctermbg=233		guifg=#8a8a8a	guibg=#090909
 hi Folded				cterm=none		ctermfg=110		ctermbg=233		guifg=#87afd7	guibg=#000000
@@ -158,7 +158,7 @@ if v:version >= 700
 endif
 
 if v:version >= 703
-	hi ColorColumn	cterm=none	ctermfg=250		ctermbg=234 guibg=#070707
+	hi ColorColumn	cterm=none	ctermfg=250		ctermbg=232 guibg=#070707
 endif
 
 " ### syntax highlighting
