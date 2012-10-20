@@ -32,13 +32,10 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-export PATH=/home/tbcast/.rbenv/shims:/home/tbcast/bin:/home/tbcast/.rbenv/bin:/home/tbcast/.rbenv/shims:/home/tbcast/bin:/home/tbcast/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl
-export EDITOR=vim
-
 unsetopt correct_all
 
-alias keyboard_setup='setxkbmap us -variant altgr-intl; xmodmap ~/.Xmodmap'
-alias e=$EDITOR
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
-eval `ssh-agent`
+export EDITOR=vim
+alias e=$EDITOR
