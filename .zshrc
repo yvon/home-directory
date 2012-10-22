@@ -39,3 +39,5 @@ eval "$(rbenv init -)"
 
 export EDITOR=vim
 alias e=$EDITOR
+
+export PATH="$HOME/bin:$PATH"
