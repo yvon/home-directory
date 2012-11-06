@@ -37,7 +37,7 @@ end
 beautiful.init(".config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminal"
+terminal = "urxvt"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -77,7 +77,10 @@ end
 -- Create a laucher widget and a main menu
 mymainmenu = awful.menu({ items = { { "chromium", "chromium" },
                                     { "thunderbird", "thunderbird" },
-                                    { "mutt", terminal .. " -e mutt" }
+                                    { "mutt", terminal .. " -e mutt" },
+                                    { "wifi", terminal .. " -e sudo wifi-menu" },
+                                    { "suspend", "sudo pm-suspend" },
+                                    { "shutdown", "sudo shutdown -h 0" }
                                   }
                         })
 
@@ -98,7 +101,7 @@ for s = 1, screen.count() do
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s })
+    mywibox[s] = awful.wibox({ position = "top", ontop = false, screen = s })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
