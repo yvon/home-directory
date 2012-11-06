@@ -8,6 +8,7 @@ filetype plugin indent on
 set tags+=gems.tags
 set textwidth=80
 let &colorcolumn=join(range(&textwidth + 1, &textwidth + 30),",")
+set cursorline
 set showbreak=++\
 set mouse=a
 set nocompatible
