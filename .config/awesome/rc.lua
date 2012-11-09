@@ -51,16 +51,8 @@ layouts =
 {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
+    awful.layout.suit.max
 }
 -- }}}
 
@@ -76,11 +68,12 @@ end
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 mymainmenu = awful.menu({ items = { { "chromium", "chromium" },
-                                    { "thunderbird", "thunderbird" },
                                     { "mutt", terminal .. " -e mutt" },
+                                    { "arandr", "arandr" },
                                     { "wifi", terminal .. " -e sudo wifi-menu" },
-                                    { "suspend", "sudo pm-suspend" },
-                                    { "shutdown", "sudo shutdown -h 0" }
+                                    { "reboot", "sudo reboot" },
+                                    { "shutdown", "sudo shutdown -h 0" },
+                                    { "suspend", "sudo pm-suspend" }
                                   }
                         })
 
@@ -89,6 +82,13 @@ mywibox = {}
 mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
+
+statustext = widget({ type = "textbox" })
+awful.widget.layout.margins[statustext] = { right = 10 }
+statustext.text = "Awesome !"
+
+textclock = awful.widget.textclock({}, "%H:%M")
+awful.widget.layout.margins[textclock] = { right = 10 }
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
@@ -101,7 +101,7 @@ for s = 1, screen.count() do
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", ontop = false, screen = s })
+    mywibox[s] = awful.wibox({ position = "top", screen = s })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
@@ -110,6 +110,8 @@ for s = 1, screen.count() do
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
+        textclock,
+        statustext,
         layout = awful.widget.layout.horizontal.rightleft
     }
 end
@@ -146,7 +148,7 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey, "Shift"   }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -158,8 +160,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
-
-    awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
@@ -177,16 +177,16 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
+    awful.key({ modkey,           }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ modkey,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end),
+    -- awful.key({ modkey,           }, "n",
+    --     function (c)
+    --         -- The client currently has the input focus, so it cannot be
+    --         -- minimized, since minimized clients can't have the focus.
+    --         c.minimized = true
+    --     end),
     awful.key({ modkey,           }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal

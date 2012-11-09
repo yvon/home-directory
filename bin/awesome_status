@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'socket'
+
+def out str
+  puts "statustext.text = #{str.to_s.inspect}"
+end
+
+def ip
+  addr = Socket.ip_address_list.detect { |intf| intf.ipv4_private? }
+  addr ? addr.inspect_sockaddr : 'Disconnected'
+end
+
+def batt
+  `acpi`.chomp
+end
+
+def essid
+  `current_essid`.chomp
+end
+
+out "#{essid} #{ip}     #{batt}   "

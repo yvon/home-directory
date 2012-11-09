@@ -1,0 +1,3 @@
+#!/bin/sh
+AP=$(iwconfig wlan0 | grep 'ESSID:' | awk '{print $4}' | sed 's/ESSID://g' | sed 's/"//g')
+echo $AP
