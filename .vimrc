@@ -6,6 +6,7 @@ let mapleader = ' '
 syntax enable
 filetype plugin indent on
 
+set nowrap
 set tags+=gems.tags
 set textwidth=80
 let &colorcolumn=join(range(&textwidth + 1, &textwidth + 30),",")
@@ -20,7 +21,7 @@ set sw=2
 set expandtab
 set wildmode=list:longest
 set list
-set listchars="tab:»\ ,trail:·"
+set listchars=tab:»\ ,trail:·
 set pastetoggle=<F2>
 set t_Co=256 "256 colors
 set ignorecase
