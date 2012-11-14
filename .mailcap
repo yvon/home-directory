@@ -1,0 +1,3 @@
+application/pdf; view_attachement epdfview %s
+image/jpeg; view_attachement chromium %s
+image/png; view_attachement chromium %s
