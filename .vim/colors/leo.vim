@@ -69,7 +69,7 @@ hi PreProc     cterm=none      ctermfg=202
 hi Special     cterm=none      ctermfg=206  ctermbg=234
 hi Statement   cterm=none      ctermfg=171
 hi String      cterm=none      ctermfg=180  ctermbg=234
-hi Todo        cterm=none      ctermfg=226  ctermbg=none
+hi Todo        cterm=underline ctermfg=226  ctermbg=none
 hi Type        cterm=none      ctermfg=75
 hi Underlined  cterm=underline ctermfg=39
 
