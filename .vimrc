@@ -67,5 +67,5 @@ function! RunTest()
   call RunSpec(line('.'))
 endfunction
 
-map <Leader>; :call RunTest()<CR>
-map <Leader>' :call RunTestFile()<CR>
+map <Leader>; :call RunTest()<CR><CR>
+map <Leader>' :call RunTestFile()<CR><CR>
