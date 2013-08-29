@@ -1,71 +1,73 @@
+set t_Co=256
+set nocompatible
+colorscheme leo
+syntax enable
+filetype plugin indent on
+
 call pathogen#infect()
 call pathogen#helptags()
 
 let mapleader = ' '
+let g:CommandTMaxFiles=50000
 
-syntax enable
-filetype plugin indent on
-
-set nowrap
-set tags+=gems.tags
+set hidden
 set textwidth=80
-let &colorcolumn=join(range(&textwidth + 1, &textwidth + 30),",")
-set cursorline
-set showbreak=++\
-set mouse=a
-set nocompatible
-set ruler
-set relativenumber
 set ts=2
 set sw=2
 set expandtab
-set wildmode=list:longest
 set list
-set listchars=tab:»\ ,trail:·
-set pastetoggle=<F2>
-set t_Co=256 "256 colors
-set ignorecase
-set smartcase
-set gdefault
-set showmatch
-set laststatus=2
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set listchars=nbsp:¬,tab:»\ ,trail:·
+set wildmode=list:longest
 
-set guioptions=""
-set guifont=Terminus\ 12
+set exrc
+set mouse=a
+set relativenumber
 
-" nnoremap ; :
+nnoremap ; :
 nnoremap Q @q
-nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <F2> :NERDTreeToggle<CR>
-nnoremap <F3> :cn<CR>
-nnoremap <F4> :cp<CR>
 nnoremap <C-j> <C-W>w
 nnoremap <C-k> <C-w>W
-
-colorscheme leo
-highlight ColorColumn guibg=#060606
-
-autocmd QuickFixCmdPost *grep* cwindow
-autocmd FileType mail set tw=72
-autocmd FileType txt set tw=72
+nnoremap <leader>c :!ctags -R *<CR>
+nnoremap <F3> :cn<CR>
+nnoremap <F4> :cp<CR>
 
 au BufRead,BufNewFile Gemfile setfiletype ruby
 au BufRead,BufNewFile Guardfile setfiletype ruby
+au BufRead,BufNewFile *.god setfiletype ruby
 
 function! RunSpec(line)
-  let spec = "spin push"
-  let cmd = spec . " " . @% . ":" . a:line
+  let arg = @%
+  if a:line != ""
+    let arg = arg . ":" . a:line
+  end
+
+  let cmd = "bundle exec spin push " . arg . " || bundle exec rspec --fail-fast " . arg
+  execute ":! " . cmd
+endfunction
+
+function! RunCucumber(line)
+  let cmd = "bundle exec cucumber " . @%
+  if a:line != ""
+    let cmd = cmd . ":" . a:line
+  end
   execute ":! echo " . cmd . " && " . cmd
 endfunction
 
 function! RunTestFile()
-  call RunSpec("")
+  if @% =~ "\.feature$"
+    call RunCucumber("")
+  elseif @% =~ "\.rb$"
+    call RunSpec("")
+  end
 endfunction
 
 function! RunTest()
-  call RunSpec(line('.'))
+  if @% =~ "\.feature$"
+    call RunCucumber(line('.'))
+  elseif @% =~ "\.rb$"
+    call RunSpec(line('.'))
+  end
 endfunction
 
-map <Leader>; :call RunTest()<CR><CR>
-map <Leader>' :call RunTestFile()<CR><CR>
+map <Leader>; :call RunTest()<CR>
+map <Leader>' :call RunTestFile()<CR>

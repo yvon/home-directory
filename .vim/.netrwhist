@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/tbcast/.rbenv/versions/1.9.3-p125/lib/ruby/gems/1.9.1/gems/resque-1.24.1'
+let g:netrw_dirhist_2='/home/tbcast/.rbenv/versions/1.9.3-p125/lib/ruby/gems/1.9.1/gems/resque-1.24.1/lib'
+let g:netrw_dirhist_3='/home/tbcast/.rbenv/versions/1.9.3-p125/lib/ruby/gems/1.9.1/gems/resque-1.24.1/lib/resque'
